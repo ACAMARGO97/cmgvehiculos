@@ -5,8 +5,14 @@ from django.db import models
 class Marca(models.Model):
     nombre = models.CharField(max_length=60)
 
+    def __str__(self):
+        return self.nombre
+
 class Tipovehiculo(models.Model):
     nombre = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.nombre
 
 class Vehiculos(models.Model):
     modelo = models.CharField(max_length=30)
@@ -15,4 +21,7 @@ class Vehiculos(models.Model):
     motor = models.CharField(max_length=10)
     marca = models.ForeignKey(Marca, null=True, blank=True, on_delete=models.CASCADE)
     tipovehiculo = models.ForeignKey(Tipovehiculo, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.modelo
 
