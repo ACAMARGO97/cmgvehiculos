@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-from apps import vehiculos
 from apps.vehiculos.models import Vehiculos
 
 # Create your models here.
@@ -10,7 +8,7 @@ from apps.vehiculos.models import Vehiculos
 class Venta(models.Model):
     fecha = models.DateField()
     valorTotal = models.BigIntegerField()
-    tipoPagp = models.CharField(max_length=20)
+    tipoPago = models.CharField(max_length=20)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     vehiculos= models.ManyToManyField(Vehiculos, through='VehiculoVenta')
 
