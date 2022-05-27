@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+       <div class="row" style="padding: 20px">
+           <div class="col-3"></div>
+           <div class="col-4" style=" background-color:rgb(60, 213, 211);padding: 5px; border-radius: 10%">
+                <div align ="center" class="form-group">
+                   <h4><b>Mostrar el valor total de vehiculos vendidos en un rango de fecha</b></h4>
+                    <br>
+                    <h4><b> <i> Ingrese el rango de fechas</i></b></h4>
+                    <br>
+                    <div style="padding: 5px">
+                        <label for="fecha1">Fecha Inicial:</label>
+                        <input type="date" name="fecha1">
+                    </div>
+                    <div style="padding: 5px"> 
+                        <label for="fecha2">Fecha Final:</label>
+                        <input type="date" name="fecha2">
+                    </div>
+                </div>
+                <div align ="center" class="form-group">
+                    <br>
+                    <button class="btn btn-primary" type="submit">
+                        Consultar
+                    </button>
+                </div>
+            </div>
+       </div>
+    </form>
+    <div class="row" style="padding: 0px">
+        <div class="col-3"></div>
+        <div class="col-4" style=" background-color:rgb(59, 210, 223);padding: 5px">
+             <div align ="center" class="form-group">
+                    <h3>Resultado de la Consulta</h3>
+                    {% if context.consulta1.ValorTotal__sum %}
+                    <p> El valor total de vehiculos vendidos dentro del rango {{context.fecha1}} y {{context.fecha2}} ingresado es de {{context.consulta1.ValorTotal__sum}}</p>
+                    {% else %}
+                    <h6>Aún no has ingresado el rango de fechas o no hay registros para ese rango</h6>
+                    {% endif %}            
+            </div>
+         </div>
+    </div>
+{% endblock  %}
