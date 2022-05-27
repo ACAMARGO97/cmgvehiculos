@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h1 class="pull-right">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3">
+            <h3> Listado de Ventas</h3>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3">
+            <a href="{% url 'ventas:vehiculoVentasCreate' %}" class="btn btn-danger"> Adicionar <i class="fa-solid fa-circle-plus"></i></a>
+        </div>
+    </div>
+</h1>
+
+<table class="table table-secondary table-hover">
+    <thead>
+      <tr class="table-success" class="d-flex justify-content-center" >
+        <th scope="col" class= "text-center">Id</th>
+        <th scope="col" class= "text-center">Vehiculo</th>
+        <th scope="col" class= "text-center">Venta</th>
+        <th scope="col" class= "text-center">Cantidad</th>
+        <th scope="col" class= "text-center">Precio</th>
+        <th scope="col" class= "text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% if ventas %}
+        {% for vehiculoVentas in ventas %}
+            <tr>
+                <td class= "text-center">{{ vehiculoVentas.id}}</td>
+                <td class= "text-center">{{ vehiculoVentas.vehiculo}}</td>
+                <td class= "text-center">{{ vehiculoVentas.venta}}</td>
+                <td class= "text-center">{{ vehiculoVentas.cantidad}}</td>               
+                <td class= "text-center">{{ vehiculoVentas.precio}}</td>                  
+                <td class="d-flex justify-content-center">
+                <a href="{% url 'ventas:vehiculoVentasEdit' vehiculoVentas.id %}" class="btn btn-success btn-xs">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a href="{% url 'ventas:vehiculoVentasEliminar' vehiculoVentas.id %}" class="btn btn-danger btn-xs">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+                </td>
+            </tr>
+        {% endfor %}
+      {% else %}
+            <h3> ¡Lista Vacía!: No existen registros</h3>
+        {%endif%}
+    
+    </tbody>
+  </table>
+{% endblock %}

@@ -28,10 +28,16 @@
                 <a class="nav-link" href="{% url 'vehiculos:listVehiculos' %}">VEHICULOS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">VENTAS</a>
+                <a class="nav-link" href="{% url 'ventas:listVentas' %}">VENTAS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">MARCA</a>
+                <a class="nav-link" href="{% url 'vehiculos:listMarcas' %}">MARCA</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'vehiculos:listTipoVehiculo' %}">TIPO DE VEHICULO</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'ventas:listVehiculoVentas' %}">VEHICULO VENTA</a>
               </li>
             </ul>
           </div>

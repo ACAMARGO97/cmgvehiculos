@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 class="pull-right">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3">
+            <h3>Listado de Ventas</h3>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3">
+            <a href="{% url 'ventas:ventaCreate' %}" class="btn btn-danger pull-right" style="margin-top: -10px; margin-bottom: 5px;"> Adicionar</a>
+        </div>
+    </div>
+</h1>
+
+<table class="table table-secondary table-hover">
+    <thead>
+      <tr class="table-success" >
+        <th scope="col">Id</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Valor Total</th>
+        <th scope="col">Tipo de pago</th>
+        <th scope="col">usuario</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% if ventas %}
+        {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.id}}</td>
+                <td>{{ venta.fecha}}</td>
+                <td>{{ venta.valorTotal}}</td>
+                <td>{{ venta.tipoPago}}</td>
+                <td>{{ venta.user}}</td>
+                <td>
+                    <a href="{% url 'ventas:ventaEdit' venta.id %}" class="btn btn-success btn-xs">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                    <a href="{% url 'ventas:ventaElim' venta.id %}" class="btn btn-danger btn-xs">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+      {% else %}
+            <h3> ¡Lista Vacía!: No existen registros</h3>
+        {%endif%}
+    
+    </tbody>
+</table>
+{% endblock %}
